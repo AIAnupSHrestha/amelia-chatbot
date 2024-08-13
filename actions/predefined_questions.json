@@ -1,0 +1,11 @@
+{
+    "flexible":{
+        "a": "Flexible hours: Employees can choose their start and end times, with a mandatory core period (e.g., from 10 AM to 3 PM).",
+        "b": "Remote work: Employees can work remotely up to 2 days per week, with their manager's approval.",
+        "c": "Compressed workweek: Employees can work their weekly hours in fewer days (e.g., four days instead of five).",
+        "d": "Part-time work: Employees can choose to work part-time for a determined or undetermined period, with their manager's approval.",
+        "e": "Unpaid leave: Employees can take unpaid leave in addition to their paid leave, subject to approval.",
+        "f": "Irregular schedule: Employees can follow a personalized schedule where their working hours are not fixed from day to day, but their total working hours and pay remain the same.",
+        "g": "Job sharing: Two employees can share the responsibilities of a single full-time position, with reduced working hours and shared responsibilities"
+    }
+}

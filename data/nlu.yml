@@ -1,0 +1,107 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - Hi
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: select_option
+  examples: |
+    - [Job Post](option)
+    - [HR Policy](option)
+    - I want to create [Job Posting](option) template
+    - I want to create [HR Policy](option)
+    - Could you help me create [Team activity information](option) form
+    - [Team activity information](option)
+    - Create [Team activity information](option)
+    - Help me make [Job Posting](option) form
+    - Can you help me draft a [Job Post](option)?
+    - I need to create an [HR Policy](option) document.
+    - Please assist me in making a [Job Posting](option) template.
+    - Could you generate an [HR Policy](option) for me?
+    - I want to design a [Team activity information](option) form.
+    - Could you provide a [Team activity information](option) template?
+    - I need help creating a [Job Posting](option) form.
+    - Can you create an [HR Policy](option) draft for me?
+    - I amm looking to write a [Job Post](option).
+    - Can you assist with creating an [HR Policy](option)?
+    - I want to draft a [Team activity information](option) form.
+    - Please help me put together a [Job Posting](option) document.
+    - I need assistance with making an [HR Policy](option) template.
+- intent: hr_policy
+  examples: |
+    - I want to create policy for [remote](hr_policy_type)
+    - [Remote](hr_policy_type) work
+    - [Hybrid](hr_policy_type) Job
+    - Create policy for [on-site](hr_policy_type) work
+    - I need to draft an HR policy for [remote](hr_policy_type) employees.
+    - Please assist in developing a policy for [hybrid](hr_policy_type) jobs.
+    - I want to set up an HR policy for [remote](hr_policy_type) work arrangements.
+    - Help me formulate an HR policy for [on-site](hr_policy_type) roles.
+    - I am looking to establish an HR policy for [hybrid](hr_policy_type) work.
+    - Can you guide me in creating a policy for [remote](hr_policy_type) positions?
+    - I want to write an HR policy for [on-site](hr_policy_type) employment.
+    - Please help me draft a policy for [hybrid](hr_policy_type) employees.
+    - I need to develop an HR policy for [remote](hr_policy_type) roles.
+    - I want to create hr policy for [Remote](hr_policy_type) job
+    - I want to create [hybrid](hr_policy_type) job
+    - [Remote]{"entity": "hr_policy_type", "value": "remote"} work
+- intent: policy_type
+  examples: |
+    - I want to know about the [flexible](policy_name) work policy
+    - Tell me more about [flexible](policy_name) work policy
+    - Give me details about [strict](policy_name) work policy
+    - Select the [non-flexible](policy_name) work policy for me
+    - I'd like information on the [non-flexible](policy_name) policy
+    - Can you explain the [onsite](policy_name) work policy?
+    - What does the [onsite](policy_name) policy entail?
+    - Show me the details of [non-flexible](policy_name) policy
+    - I am interested in the [strict](policy_name) policy
+    - Provide information on the [onsite](policy_name) policy
+- intent: select_flexible_work_option
+  examples: |
+    - {flexible_work_option: a}
+    - {flexible_work_option: b}
+    - {flexible_work_option: c} 
+    - {flexible_work_option: d}
+    - {flexible_work_option: e}
+    - {flexible_work_option: f}
+    - {flexible_work_option: g}
+
+- intent: ask_question
+  examples: |
+    - Flexible hours
+    - Compressed workweek
+    - Part-time work
+    - Unpaid leave
+    - Irregular schedule
+    - Job sharing

@@ -1,0 +1,98 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: action_greet
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: action_greet
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: action_greet
+
+- story: user_select_hr_policy
+  steps:
+  - intent: select_option
+    entities:
+    - option: "selected_hr_policy"
+  - action: action_hr_policy
+  - intent: hr_policy
+  - slot_was_set: 
+    - hr_policy_type: remote
+  - action: action_hr_policy
+
+
+- story: select a policy
+  steps:
+  - intent: policy_type
+  - slot_was_set:
+      - policy_name: flexible
+  - action: action_policy_type
+  - intent: select_flexible_work_option
+    entities:
+    - flexible_work_option: "a"
+  - slot_was_set:
+    - flexible_work_option: "a"
+  - action: action_select_flexible_work_option
+
+
+
+- story: select flexible work option
+  steps:
+  - intent: select_flexible_work_option
+    entities:
+    - flexible_work_option: "a"
+  - slot_was_set:
+    - flexible_work_option: "a"
+  - action: action_select_flexible_work_option
+
+- story: policy_questions
+  steps:
+  - intent: ask_question
+  - action: action_get_questions
+  - action: question_form
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: action_greet
+  - intent: select_option
+    entities:
+    - option: selected_hr_policy
+  - slot_was_set:
+    - option: selected_hr_policy
+  - action: action_hr_policy
+  - intent: hr_policy
+    entities:
+    - hr_policy_type: remote
+  - slot_was_set:
+    - hr_policy_type: remote
+  - action: action_hr_policy
+  - intent: policy_type
+    entities:
+    - policy_name: flexible
+  - slot_was_set:
+    - policy_name: flexible 
+  - action: action_policy_type
+  - intent: select_flexible_work_option
+    entities:
+    - flexible_work_option: a
+  - slot_was_set:
+    - flexible_work_option: a
+  - action: action_select_flexible_work_option
+
+# - story: interactive_story_2
+#   steps:
+#   - intent: select_flexible_work_option
+#     entities:
+#     - flexible_work_option: a
+#   - slot_was_set:
+#     - flexible_work_option: a
+#   - action: action_select_flexible_work_option

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+    <head>
+        <!-- meta charset -->
+        <meta charset="utf-8">
+        <!-- site title -->
+        <title>Chatbot - HR Policy</title>
+        <!-- meta description -->
+        <meta name="description" content="">
+        <!-- mobile viwport meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Chatbot css -->
+        <!--Import materialize.css-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="chatbot/css/materialize.min.css"/>
+
+        <!--Main css-->
+        <link rel="stylesheet" type="text/css" href="chatbot/css/style.css" />
+        
+        <!-- ================================
+        CSS Files
+        ================================= -->
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i|Open+Sans:400,600,700,800" rel="stylesheet">
+        <link rel="stylesheet" href="css/themefisher-fonts.min.css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="js/vendor/boxicons/css/boxicons.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/dark.css">
+        <link id="color-changer" rel="stylesheet" href="css/colors/red.css">
+
+
+    </head>
+
+    <body>
+
+        <main class="site-wrapper">
+            <div class="pt-table">
+                <div class="pt-tablecell page-home relative">
+
+                    <div class="container">
+                        <!--chatbot widget -->
+                        <div class="widget">
+                            <div class="chat_header">
+                            <!--Add the name of the bot here -->
+                            <span class="chat_header_title">Chatbot</span>
+                            <span class="dropdown-trigger" href="#" data-target="dropdown1">
+                                <i class="material-icons"> more_vert </i>
+                            </span>
+
+                            <!-- Dropdown menu-->
+                            <ul id="dropdown1" class="dropdown-content">
+                                <li><a href="#" id="clear">Clear</a></li>
+                                <li><a href="#" id="restart">Restart</a></li>
+                                <li><a href="#" id="close">Close</a></li>
+                            </ul>
+                            </div>
+
+                            <!--Chatbot contents goes here -->
+                            <div class="chats" id="chats">
+                            <div class="clearfix"></div>
+                            </div>
+
+                            <!--keypad for user to type the message -->
+                            <div class="keypad">
+                            <textarea
+                                id="userInput"
+                                placeholder="Type a message..."
+                                class="usrInput"
+                                style="overflow: hidden; color: black;"
+                            ></textarea>
+                            <div id="sendButton">
+                                <i class="tf-ion-ios-paperplane" style="font-size: 32px;" aria-hidden="true"></i>
+                            </div>
+                            </div>
+                        </div>
+
+                        <!--bot profile-->
+                        <div class="profile_div" id="profile_div">
+                            <img class="imgProfile" src="chatbot/img/botAvatar.png" />
+                        </div>
+
+                        <!-- Bot pop-up intro -->
+                        <div class="tap-target" data-target="profile_div">
+                            <div class="tap-target-content">
+                            <h5 class="white-text">Hey there 👋</h5>
+                            <p class="white-text">
+                                You can chat with me for creating HR Policy.
+                            </p>
+                            </div>
+                        </div>
+                    </div> <!-- /.container -->
+
+                </div> <!-- /.pt-tablecell -->
+            </div> <!-- /.pt-table -->
+        </main> <!-- /.site-wrapper -->
+
+        <!-- Chat Bot -->
+        
+        
+        <!-- ================================
+        JavaScript Libraries
+        ================================= -->
+        <script src="js/vendor/jquery-2.2.4.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <!-- <script src="js/jquery.easing.min.js"></script> -->
+        <script src="js/vendor/typed.js/typed.min.js"></script>
+        <script src="js/isotope.pkgd.min.js"></script>
+        <script src="js/jquery.nicescroll.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/jquery-validation.min.js"></script>
+        <script src="js/form.min.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Chatbot css -->
+        <!--Main Script -->
+        <script type="text/javascript" src="chatbot/js/lib/materialize.min.js"></script>
+        <script src="chatbot/js/lib/uuid.min.js"></script>
+        <script type="text/javascript" src="chatbot/js/script.js"></script>
+
+        <!--Chart.js Script -->
+        <script type="text/javascript" src="chatbot/js/lib/chart.min.js"></script>
+        <script type="text/javascript" src="chatbot/js/lib/showdown.min.js"></script>
+    </body>
+</html>

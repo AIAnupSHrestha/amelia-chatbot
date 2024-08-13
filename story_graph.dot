@@ -1,0 +1,33 @@
+digraph  {
+0 [class="start active", fillcolor=green, fontsize=12, label=START, style=filled];
+"-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
+1 [class=active, fontsize=12, label=action_session_start];
+2 [class=active, fontsize=12, label=action_greet];
+3 [class=active, fontsize=12, label=action_hr_policy];
+5 [class=active, fontsize=12, label=action_policy_type];
+6 [class=active, fontsize=12, label=action_select_flexible_work_option];
+7 [class=active, fontsize=12, label=action_unlikely_intent];
+35 [class="intent dashed active", label="  ?  ", shape=rect];
+36 [class="intent active", fillcolor=lightblue, label="/greet", shape=rect, style=filled];
+37 [class="intent active", fillcolor=lightblue, label="/select_option", shape=rect, style=filled];
+38 [class="intent active", fillcolor=lightblue, label="/policy_type", shape=rect, style=filled];
+39 [class="intent active", fillcolor=lightblue, label="/hr_policy", shape=rect, style=filled];
+40 [class="intent active", fillcolor=lightblue, label="/select_flexible_work_option", shape=rect, style=filled];
+41 [class="intent active", fillcolor=lightblue, label="/hr_policy", shape=rect, style=filled];
+0 -> "-1"  [class="", key=NONE, label=""];
+0 -> 1  [class=active, key=NONE, label=""];
+1 -> 36  [class=active, key=0];
+2 -> 37  [class=active, key=0];
+3 -> 38  [class=active, key=0];
+3 -> 39  [class=active, key=0];
+5 -> 40  [class=active, key=0];
+6 -> 35  [class=active, key=NONE, label=""];
+6 -> 41  [class=active, key=0];
+7 -> 3  [class=active, key=NONE, label=""];
+36 -> 2  [class=active, key=0];
+37 -> 3  [class=active, key=0];
+38 -> 5  [class=active, key=0];
+39 -> 3  [class=active, key=0];
+40 -> 6  [class=active, key=0];
+41 -> 7  [class=active, key=0];
+}

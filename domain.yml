@@ -1,0 +1,78 @@
+version: '3.1'
+config:
+  store_entities_as_slots: true
+intents:
+- bot_challenge
+- goodbye
+- greet
+- hr_policy
+- policy_type
+- select_flexible_work_option
+- select_option
+- ask_question
+entities:
+- policy_name
+- option
+- hr_policy_type
+- flexible_work_option
+slots:
+  hr_policy_type:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: hr_policy_type
+    influence_conversation: false
+  option:
+    type: categorical
+    values:
+    - Job Post
+    - HR Policy
+    - Team activity information
+    mappings:
+    - type: from_entity
+      entity: option
+  policy_name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: policy_name
+    influence_conversation: false
+  flexible_work_option:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: flexible_work_option
+  question_1:
+    type: text
+  question_2:
+    type: text
+  question_3:
+    type: text
+  question_4:
+    type: text
+  question_5:
+    type: text
+responses:
+  utter_goodbye:
+    - text: Bye
+  utter_iamabot:
+    - text: I am a bot, powered by Rasa.
+actions:
+- action_select_flexible_work_option
+- action_policy_type
+- action_hr_policy
+- action_greet
+- action_get_questions
+- question_form
+forms:
+  question_form:
+    required_slots:
+      - question_1
+      - question_2
+      - question_3
+      - question_4
+      - question_5
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
