@@ -62,6 +62,8 @@ def get_policy_from_db(table_name, attribute_name, value):
     # Returns list of policy
     # return result
 
+
+
 class ActionGreet(Action):
 
     def name(self) -> Text:
@@ -233,28 +235,64 @@ class ActionGetQuestions(Action):
 
 
 
-class QuestionForm(FormValidationAction):
-    def name(self) -> Text:
-        return "question_form"
+# class QuestionForm(FormValidationAction):
+#     def name(self) -> Text:
+#         return "question_form"
     
-    user_response = []
+#     user_response = []
 
-    async def required_slots(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Text]:
+#     async def required_slots(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Text]:
 
-        questions = tracker.get_slot("questions")
-        if not questions:
-            return ["questions"]
+#         questions = tracker.get_slot("questions")
+#         if not questions:
+#             return ["questions"]
+#         else:
+#             next_question_index = len(tracker.get_slots()) - 1
+#             if next_question_index < len(questions):
+#                 return [f"question_{next_question_index + 1}"]
+#             else:
+#                 return []
+
+#     def submit(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#         answers = tracker.current_state()['slots']
+#         self.user_response.append(answers)
+#         dispatcher.utter_message(text=answers)
+#         return []
+
+
+class ActionDynamicForm(Action):
+    def name(self):
+        return "action_dynamic_form"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        questions = flexible_questions["question"]
+        question_index = tracker.get_slot("question_index") or 0
+        responses = tracker.get_slot("responses") or []
+
+        if question_index < len(questions):
+            current_question = questions[question_index]
+            dispatcher.utter_message(text=current_question)
+            
+            question_index += 1
+            
+            return [SlotSet("question_index", question_index),
+                    SlotSet("user_response", None)]
         else:
-            next_question_index = len(tracker.get_slots()) - 1
-            if next_question_index < len(questions):
-                return [f"question_{next_question_index + 1}"]
-            else:
-                return []
+            dispatcher.utter_message(text="Thank you for answering all the questions!")
+            
+            return [SlotSet("question_index", None)]
+        
+response = []
 
-    def submit(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        answers = tracker.current_state()['slots']
-        self.user_response.append(answers)
-        dispatcher.utter_message(text=answers)
+class ActionStoreResponse(Action):
+    def name(self):
+        return "action_store_response"
+ 
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        user_response = tracker.latest_message.get("text")
+        response.append(user_response)
+        
         return []
+
 
 

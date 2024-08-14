@@ -53,12 +53,6 @@ stories:
     - flexible_work_option: "a"
   - action: action_select_flexible_work_option
 
-- story: policy_questions
-  steps:
-  - intent: ask_question
-  - action: action_get_questions
-  - action: question_form
-
 - story: interactive_story_1
   steps:
   - intent: greet
@@ -96,3 +90,14 @@ stories:
 #   - slot_was_set:
 #     - flexible_work_option: a
 #   - action: action_select_flexible_work_option
+
+- story: Dynamic question form
+  steps:
+  - intent: ask_question
+  - action: question_form
+  - action: action_dynamic_form
+  - action: action_store_response
+  - action: question_form
+  - action: action_dynamic_form
+  - action: action_store_response
+

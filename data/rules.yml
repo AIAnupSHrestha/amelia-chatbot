@@ -17,7 +17,9 @@ rules:
   - intent: greet
   - action: action_greet
 
-- rule: ask policy questions
+- rule: Activate form
   steps:
   - intent: ask_question
-  - action: action_ask_question
+  - action: question_form
+  - active_loop: question_form
+
