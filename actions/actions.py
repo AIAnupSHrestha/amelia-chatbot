@@ -18,6 +18,8 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 
+from fpdf import FPDF
+
 from reportlab.pdfgen import canvas 
 from reportlab.pdfbase.ttfonts import TTFont 
 from reportlab.pdfbase import pdfmetrics 
@@ -290,14 +292,27 @@ class ActionStoreResponse(Action):
     def name(self):
         return "action_store_response"
     
-    def save_pdf():
-        response
+    def save_pdf(self):
+        question = flexible_questions["question"]
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.set_font("Arial", size=12)
+        pdf.cell(200, 10, txt="Policy Questions and Responses", ln=True, align='C')
+        for num in range(5):
+            pdf.cell(200, 10, txt=question[num], ln=True, align='L')
+            pdf.cell(200, 10, txt= "Ans:" + response[num], ln=True, align='L')
+        pdf.output("Policy_Questions_and_Responses.pdf")
+        
+
  
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        for num in range(5):
+        for num in range(1,6):
             user_response = tracker.get_slot(f"response{num}")
             response.append(user_response)
         dispatcher.utter_message(text="Your responses are recorded")
+        self.save_pdf()
+
+        dispatcher.utter_message(text="Saved in 'Policy_Questions_and_Responses.pdf' file!!!")
         return []
 
 

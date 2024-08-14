@@ -28,6 +28,7 @@ nlu:
     - see you around
     - bye bye
     - see you later
+    - qwer
 - intent: bot_challenge
   examples: |
     - are you a bot?
@@ -104,28 +105,31 @@ nlu:
     - Unpaid leave
     - Irregular schedule
     - Job sharing
-    - [8 hours](response1)
-    - [5 hours](response1)
-    - [3 hours](response1)
-    - [2 hours](response1)
-    - [Flexible Scheduling](response2)
-    - [Time Zone Awareness](response2)
-    - [Asynchronous Communication](response2)
-    - [Recorded Meetings](response2)
-    - [Response Times](response3)
-    - [Availability Indicators](response3)
-    - [Respecting Boundaries](response3)
-    - [Communication Channels](response3)
-    - [Formal Request Process](response4)
-    - [Approval Criteria](response4)
-    - [Trial Periods](response4)
-    - [Documentation](response4)
-    - [Clear Goals and Metrics](response5)
-    - [Regular Check-Ins](response5)
-    - [Performance Tracking Tools](response5)
-    - [Outcome-Based Evaluation](response5)
-    - [Self-Assessment](response5)
-    - 8 hours
+    - [Time Tracking Software](response1)
+    - [Project Management Tools](response1)
+    - [Automated Attendance Systems](response1)
+    - [Regular Check-ins](response1)
+    - [Flexible Core Hours](response2)
+    - [Adjusted Core Periods](response2)
+    - [Asynchronous Collaboration](response2)
+    - [Rotating Meeting Times](response2)
+    - [Part-Time Core Periods](response3)
+    - [Remote Work Options](response3)
+    - [Supportive Infrastructure](response3)
+    - [Transparent Communication](response3)
+    - [Full Engagement](response4)
+    - [Prompt Communication](response4)
+    - [Task Completion](response4)
+    - [Regular Reminders](response4)
+    - [Request Process](response5)
+    - [Case-by-Case Evaluation](response5)
+    - [Temporary Adjustments](response5)
+    - [Permanent Adjustments](response5)
+    - [Documentation and Approval](response5)
+    - [Flexible Core Hours](response2)
+    - [Part-Time Core Periods](response3)
+    - [Full Engagement](response4)
+    - [Request Process](response5)
 - synonym: remote
   examples: |
     - Remote

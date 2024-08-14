@@ -11,15 +11,15 @@ intents:
 - select_flexible_work_option
 - select_option
 entities:
+- response2
+- response1
+- response3
+- response5
+- response4
 - policy_name
 - option
 - hr_policy_type
 - flexible_work_option
-- response1
-- response2
-- response3
-- response4
-- response5
 slots:
   hr_policy_type:
     type: text
@@ -94,21 +94,21 @@ responses:
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
   utter_ask_response1:
-  - text: What specific core hours should be defined for team collaboration?
+  - text: How will the mandatory core period be enforced, and what tools or systems will be used to track employee hours?
   utter_ask_response2:
-  - text: How will you address time zone differences among remote employees?
+  - text: What provisions will be made for employees in different time zones, and how will this impact the mandatory core period?
   utter_ask_response3:
-  - text: What guidelines should be established for communication during flexible hours?
+  - text: How will the policy accommodate employees with varying personal responsibilities, such as childcare or eldercare?
   utter_ask_response4:
-  - text: What processes will be in place for requesting changes to flexible hours?
+  - text: What are the expectations for employee availability during the mandatory core period, and how will this be communicated?
   utter_ask_response5:
-  - text: How will performance and productivity be monitored within this flexible hours framework?
+  - text: How will the policy handle requests for exceptions or adjustments to the core hours due to unforeseen circumstances?
 actions:
+- action_store_response
 - action_select_flexible_work_option
 - action_policy_type
 - action_hr_policy
 - action_greet
-- action_store_response
 - action_form_submitted
 forms:
   question_form:

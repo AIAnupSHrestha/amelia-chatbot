@@ -139,3 +139,54 @@ stories:
 #   - action: action_ask_question
 
 
+
+- story: interactive_story_1
+  steps:
+  - intent: ask_question
+  - action: question_form
+  - active_loop: question_form
+  - slot_was_set:
+    - requested_slot: response1
+  - intent: ask_question
+    entities:
+    - response1: Time Tracking Software
+  - slot_was_set:
+    - response1: Time Tracking Software
+  - action: question_form
+  - slot_was_set:
+    - requested_slot: response2
+  - intent: ask_question
+    entities:
+    - response2: Flexible Core Hours
+  - slot_was_set:
+    - response2: Flexible Core Hours
+  - action: question_form
+  - slot_was_set:
+    - requested_slot: response3
+  - intent: ask_question
+    entities:
+    - response3: Part-Time Core Periods
+  - slot_was_set:
+    - response3: Part-Time Core Periods
+  - action: question_form
+  - slot_was_set:
+    - requested_slot: response4
+  - intent: ask_question
+    entities:
+    - response4: Full Engagement
+  - slot_was_set:
+    - response4: Full Engagement
+  - action: question_form
+  - slot_was_set:
+    - requested_slot: response5
+  - intent: ask_question
+    entities:
+    - response5: Request Process
+  - slot_was_set:
+    - response5: Request Process
+  - action: question_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_store_response
+  - intent: goodbye
