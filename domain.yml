@@ -2,23 +2,24 @@ version: '3.1'
 config:
   store_entities_as_slots: true
 intents:
-  - bot_challenge
-  - goodbye
-  - greet
-  - hr_policy
-  - policy_type
-  - select_flexible_work_option
-  - select_option
-  - ask_question
-
+- ask_question
+- bot_challenge
+- goodbye
+- greet
+- hr_policy
+- policy_type
+- select_flexible_work_option
+- select_option
 entities:
-  - policy_name
-  - option
-  - hr_policy_type
-  - flexible_work_option
-  - user_response
-  - question_index
-
+- policy_name
+- option
+- hr_policy_type
+- flexible_work_option
+- response1
+- response2
+- response3
+- response4
+- response5
 slots:
   hr_policy_type:
     type: text
@@ -47,38 +48,76 @@ slots:
     mappings:
     - type: from_entity
       entity: flexible_work_option
-  user_response:
+  response1:
     type: text
     mappings:
     - type: from_entity
-      entity: user_response
+      entity: response1
+      conditions:
+      - active_loop: question_form
     influence_conversation: false
-  question_index:
-    type: any
-    influence_conversation: false
-    mappings: 
+  response2:
+    type: text
+    mappings:
     - type: from_entity
-      entity: question_index
-
+      entity: response2
+      conditions:
+      - active_loop: question_form
+    influence_conversation: false
+  response3:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: response3
+      conditions:
+      - active_loop: question_form
+    influence_conversation: false
+  response4:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: response4
+      conditions:
+      - active_loop: question_form
+    influence_conversation: false
+  response5:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: response5
+      conditions:
+      - active_loop: question_form
+    influence_conversation: false
 responses:
   utter_goodbye:
-    - text: Bye
+  - text: Bye
   utter_iamabot:
-    - text: I am a bot, powered by Rasa.
-
+  - text: I am a bot, powered by Rasa.
+  utter_ask_response1:
+  - text: What specific core hours should be defined for team collaboration?
+  utter_ask_response2:
+  - text: How will you address time zone differences among remote employees?
+  utter_ask_response3:
+  - text: What guidelines should be established for communication during flexible hours?
+  utter_ask_response4:
+  - text: What processes will be in place for requesting changes to flexible hours?
+  utter_ask_response5:
+  - text: How will performance and productivity be monitored within this flexible hours framework?
 actions:
 - action_select_flexible_work_option
 - action_policy_type
 - action_hr_policy
 - action_greet
-- action_dynamic_form
 - action_store_response
-
+- action_form_submitted
 forms:
   question_form:
     required_slots:
-      - user_response
-
+    - response1
+    - response2
+    - response3
+    - response4
+    - response5
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

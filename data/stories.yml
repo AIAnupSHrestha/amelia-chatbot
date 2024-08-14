@@ -91,13 +91,51 @@ stories:
 #     - flexible_work_option: a
 #   - action: action_select_flexible_work_option
 
+# - story: Dynamic question form
+#   steps:
+#   - intent: ask_question
+#   - action: question_form
+#   - action: action_dynamic_form
+#   - action: action_store_response
+#   - action: question_form
+#   - action: action_dynamic_form
+#   - action: action_store_response
+
 - story: Dynamic question form
   steps:
   - intent: ask_question
   - action: question_form
-  - action: action_dynamic_form
+  - active_loop: question_form
+  - slot_was_set:
+    - requested_slot: response1
+  - slot_was_set:
+    - response1: 8 hours
+  - slot_was_set:
+    - requested_slot: response2
+  - slot_was_set:
+    - response2: Flexible Scheduling
+  - slot_was_set:
+    - requested_slot: response3
+  - slot_was_set:
+    - response3: Regular Check-Ins
+  - slot_was_set:
+    - requested_slot: response5
+  - slot_was_set:
+    - response5: Formal Request Process
+  - slot_was_set:
+    - requested_slot: response5
+  - slot_was_set:
+    - response5: Clear Goals and Metrics
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  # - action: action_form_submitted
   - action: action_store_response
-  - action: question_form
-  - action: action_dynamic_form
-  - action: action_store_response
+
+
+# - story: ask question
+#   steps: 
+#   - intent: ask_question
+#   - action: action_ask_question
+
 

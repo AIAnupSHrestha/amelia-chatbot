@@ -23,3 +23,18 @@ rules:
   - action: question_form
   - active_loop: question_form
 
+- rule: submit form
+  condition:
+  - active_loop: question_form
+  steps:
+  - action: question_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # - action: action_form_submitted
+  - action: action_store_response
+
+# - rule: ask question
+#   steps: 
+#   - intent: ask_question
+#   - action: action_ask_question

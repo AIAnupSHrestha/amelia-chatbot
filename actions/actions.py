@@ -260,38 +260,44 @@ class ActionGetQuestions(Action):
 #         return []
 
 
-class ActionDynamicForm(Action):
-    def name(self):
-        return "action_dynamic_form"
+# class ValidateQuestionForm(FormValidationAction):
+#     def name(self):
+#         return "validate_question_form"
 
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        questions = flexible_questions["question"]
-        question_index = tracker.get_slot("question_index") or 0
-        responses = tracker.get_slot("responses") or []
+#     def validate_user_response1(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
 
-        if question_index < len(questions):
-            current_question = questions[question_index]
-            dispatcher.utter_message(text=current_question)
+#     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+#         questions = flexible_questions["question"]
+#         question_index = tracker.get_slot("question_index") or 0
+#         responses = tracker.get_slot("user_response") or []
+
+#         if question_index < len(questions):
+#             current_question = questions[question_index]
+#             dispatcher.utter_message(text=current_question)
             
-            question_index += 1
+#             question_index += 1
             
-            return [SlotSet("question_index", question_index),
-                    SlotSet("user_response", None)]
-        else:
-            dispatcher.utter_message(text="Thank you for answering all the questions!")
+#             return [SlotSet("question_index", question_index),
+#                     SlotSet("user_response", None)]
+#         else:
+#             dispatcher.utter_message(text="Thank you for answering all the questions!")
             
-            return [SlotSet("question_index", None)]
+#             return [SlotSet("question_index", None)]
         
 response = []
 
 class ActionStoreResponse(Action):
     def name(self):
         return "action_store_response"
+    
+    def save_pdf():
+        response
  
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        user_response = tracker.latest_message.get("text")
-        response.append(user_response)
-        
+        for num in range(5):
+            user_response = tracker.get_slot(f"response{num}")
+            response.append(user_response)
+        dispatcher.utter_message(text="Your responses are recorded")
         return []
 
 

@@ -91,12 +91,11 @@ nlu:
   examples: |
     - {flexible_work_option: a}
     - {flexible_work_option: b}
-    - {flexible_work_option: c} 
+    - {flexible_work_option: c}
     - {flexible_work_option: d}
     - {flexible_work_option: e}
     - {flexible_work_option: f}
     - {flexible_work_option: g}
-
 - intent: ask_question
   examples: |
     - Flexible hours
@@ -105,3 +104,28 @@ nlu:
     - Unpaid leave
     - Irregular schedule
     - Job sharing
+    - [8 hours](response1)
+    - [5 hours](response1)
+    - [3 hours](response1)
+    - [2 hours](response1)
+    - [Flexible Scheduling](response2)
+    - [Time Zone Awareness](response2)
+    - [Asynchronous Communication](response2)
+    - [Recorded Meetings](response2)
+    - [Response Times](response3)
+    - [Availability Indicators](response3)
+    - [Respecting Boundaries](response3)
+    - [Communication Channels](response3)
+    - [Formal Request Process](response4)
+    - [Approval Criteria](response4)
+    - [Trial Periods](response4)
+    - [Documentation](response4)
+    - [Clear Goals and Metrics](response5)
+    - [Regular Check-Ins](response5)
+    - [Performance Tracking Tools](response5)
+    - [Outcome-Based Evaluation](response5)
+    - [Self-Assessment](response5)
+    - 8 hours
+- synonym: remote
+  examples: |
+    - Remote
