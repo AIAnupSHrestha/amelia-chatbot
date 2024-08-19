@@ -11,11 +11,6 @@ intents:
 - select_flexible_work_option
 - select_option
 entities:
-- response2
-- response1
-- response3
-- response5
-- response4
 - policy_name
 - option
 - hr_policy_type
@@ -48,76 +43,162 @@ slots:
     mappings:
     - type: from_entity
       entity: flexible_work_option
+  response0:
+    type: text
+    mappings:
+    - type: custom
+      conditions:
+      - active_loop: question_form
+    influence_conversation: false
   response1:
     type: text
     mappings:
-    - type: from_entity
-      entity: response1
+    - type: custom
       conditions:
       - active_loop: question_form
     influence_conversation: false
   response2:
     type: text
     mappings:
-    - type: from_entity
-      entity: response2
+    - type: custom
       conditions:
       - active_loop: question_form
     influence_conversation: false
   response3:
     type: text
     mappings:
-    - type: from_entity
-      entity: response3
+    - type: custom
       conditions:
       - active_loop: question_form
     influence_conversation: false
   response4:
     type: text
     mappings:
-    - type: from_entity
-      entity: response4
+    - type: custom
       conditions:
       - active_loop: question_form
     influence_conversation: false
   response5:
     type: text
     mappings:
-    - type: from_entity
-      entity: response5
+    - type: custom
       conditions:
       - active_loop: question_form
     influence_conversation: false
+  response6:
+    type: text
+    mappings:
+    - type: custom
+      conditions:
+      - active_loop: question_form
+    influence_conversation: false
+  response7:
+    type: text
+    mappings:
+    - type: custom
+      conditions:
+      - active_loop: question_form
+    influence_conversation: false
+  response8:
+    type: text
+    mappings:
+    - type: custom
+      conditions:
+      - active_loop: question_form
+    influence_conversation: false
+  response9:
+    type: text
+    mappings:
+    - type: custom
+      conditions:
+      - active_loop: question_form
+    influence_conversation: false
+  question0:
+    type: text
+    mappings:
+    - type: custom
+  question1:
+    type: text
+    mappings:
+    - type: custom
+  question2:
+    type: text
+    mappings:
+    - type: custom
+  question3:
+    type: text
+    mappings:
+    - type: custom
+  question4:
+    type: text
+    mappings:
+    - type: custom
+  question5:
+    type: text
+    mappings:
+    - type: custom
+  question6:
+    type: text
+    mappings:
+    - type: custom
+  question7:
+    type: text
+    mappings:
+    - type: custom
+  question8:
+    type: text
+    mappings:
+    - type: custom
+  question9:
+    type: text
+    mappings:
+    - type: custom
 responses:
   utter_goodbye:
   - text: Bye
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
+  utter_ask_response0:
+  - text: 1. {question0}
   utter_ask_response1:
-  - text: How will the mandatory core period be enforced, and what tools or systems will be used to track employee hours?
+  - text: 2. {question1}
   utter_ask_response2:
-  - text: What provisions will be made for employees in different time zones, and how will this impact the mandatory core period?
+  - text: 3. {question2}
   utter_ask_response3:
-  - text: How will the policy accommodate employees with varying personal responsibilities, such as childcare or eldercare?
+  - text: 4. {question3}
   utter_ask_response4:
-  - text: What are the expectations for employee availability during the mandatory core period, and how will this be communicated?
+  - text: 5. {question4}
   utter_ask_response5:
-  - text: How will the policy handle requests for exceptions or adjustments to the core hours due to unforeseen circumstances?
+  - text: 6. {question5}
+  utter_ask_response6:
+  - text: 7. {question6}
+  utter_ask_response7:
+  - text: 8. {question7}
+  utter_ask_response8:
+  - text: 9. {question8}
+  utter_ask_response9:
+  - text: 10. {question9}
 actions:
+- action_form
 - action_store_response
 - action_select_flexible_work_option
 - action_policy_type
 - action_hr_policy
 - action_greet
-- action_form_submitted
+- validate_question_form
 forms:
   question_form:
     required_slots:
+    - response0
     - response1
     - response2
     - response3
     - response4
     - response5
+    - response6
+    - response7
+    - response8
+    - response9
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

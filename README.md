@@ -14,4 +14,4 @@ Here are 10 questions to consider when crafting the "Flexible hours" clause for 
 7. How will the policy ensure that flexible hours do not negatively impact productivity, team cohesion, or project deadlines?
 8. What measures will be taken to ensure that employees do not feel pressured to work outside their chosen hours or beyond the core period?
 9. How will performance be evaluated for employees working flexible hours, and what criteria will be used to ensure fairness?
-10. What are the legal implications of implementing flexible hours, and how does the policy comply with local labor laws and regulations?
+10. What are the legal implications of implementing flexible hours, and how does the policy comply with local labor laws and regulations? 

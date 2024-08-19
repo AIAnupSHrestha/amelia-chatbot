@@ -11,13 +11,13 @@ from typing import Any, Text, Dict, List
 import random
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet
+from rasa_sdk.events import SlotSet, Form
 from rasa_sdk import Action, FormValidationAction
 import json
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
-
+import re
 from fpdf import FPDF
 
 from reportlab.pdfgen import canvas 
@@ -52,9 +52,6 @@ Output should be a list of length 5: [Question 1, Question 2, Question 3, Questi
 
 with open('actions/predefined_questions.json', 'r') as file:
     predefined_questions = json.load(file)
-
-with open('actions/flexible_questions.json', 'r') as file:
-    flexible_questions = json.load(file)
 
 def get_policy_from_db(table_name, attribute_name, value):
     value = value.lower()
@@ -262,31 +259,128 @@ class ActionGetQuestions(Action):
 #         return []
 
 
-# class ValidateQuestionForm(FormValidationAction):
-#     def name(self):
-#         return "validate_question_form"
+class ValidateQuestionForm(FormValidationAction):
+    def name(self):
+        return "validate_question_form"
 
-#     def validate_user_response1(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+    def validate_response0(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        response = tracker.latest_message.get('text')
 
-#     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-#         questions = flexible_questions["question"]
-#         question_index = tracker.get_slot("question_index") or 0
-#         responses = tracker.get_slot("user_response") or []
+        if re.match(r'^[a-zA-Z0-9]+$', response):
+            return {"response0": response}
+        else:
+            dispatcher.utter_message(text="Please enter a valid value.")
+            return {"response0": None}
+    
+    def validate_response1(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        response = tracker.latest_message.get('text')
 
-#         if question_index < len(questions):
-#             current_question = questions[question_index]
-#             dispatcher.utter_message(text=current_question)
+        if re.match(r'^[a-zA-Z0-9]+$', response):
+            return {"response1": response}
+        else:
+            dispatcher.utter_message(text="Please enter a valid value.")
+            return {"response1": None}
+    
+    def validate_response2(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        response = tracker.latest_message.get('text')
+
+        if re.match(r'^[a-zA-Z0-9]+$', response):
+            return {"response2": response}
+        else:
+            dispatcher.utter_message(text="Please enter a valid value.")
+            return {"response2": None}
+    
+    def validate_response3(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        response = tracker.latest_message.get('text')
+
+        if re.match(r'^[a-zA-Z0-9]+$', response):
+            return {"response3": response}
+        else:
+            dispatcher.utter_message(text="Please enter a valid value.")
+            return {"response3": None}
+    
+    def validate_response4(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        response = tracker.latest_message.get('text')
+
+        if re.match(r'^[a-zA-Z0-9]+$', response):
+            return {"response4": response}
+        else:
+            dispatcher.utter_message(text="Please enter a valid value.")
+            return {"response4": None}
+    
+    def validate_response5(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        response = tracker.latest_message.get('text')
+
+        if re.match(r'^[a-zA-Z0-9]+$', response):
+            return {"response5": response}
+        else:
+            dispatcher.utter_message(text="Please enter a valid value.")
+            return {"response5": None}
+        
+    def validate_response6(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        response = tracker.latest_message.get('text')
+
+        if re.match(r'^[a-zA-Z0-9]+$', response):
+            return {"response6": response}
+        else:
+            dispatcher.utter_message(text="Please enter a valid value.")
+            return {"response6": None}
+    
+    def validate_response7(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        response = tracker.latest_message.get('text')
+
+        if re.match(r'^[a-zA-Z0-9]+$', response):
+            return {"response7": response}
+        else:
+            dispatcher.utter_message(text="Please enter a valid value.")
+            return {"response7": None}
+        
+    def validate_response8(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        response = tracker.latest_message.get('text')
+
+        if re.match(r'^[a-zA-Z0-9]+$', response):
+            return {"response8": response}
+        else:
+            dispatcher.utter_message(text="Please enter a valid value.")
+            return {"response8": None}
+    
+    def validate_response9(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        response = tracker.latest_message.get('text')
+
+        if re.match(r'^[a-zA-Z0-9]+$', response):
+            return {"response9": response}
+        else:
+            dispatcher.utter_message(text="Please enter a valid value.")
+            return {"response9": None}
+    
+
+    
+    
+    
+    
+    
+    
+    
+    # def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+    #     questions = flexible_questions["question"]
+    #     question_index = tracker.get_slot("question_index") or 0
+    #     responses = tracker.get_slot("user_response") or []
+
+    #     if question_index < len(questions):
+    #         current_question = questions[question_index]
+    #         dispatcher.utter_message(text=current_question)
             
-#             question_index += 1
+    #         question_index += 1
             
-#             return [SlotSet("question_index", question_index),
-#                     SlotSet("user_response", None)]
-#         else:
-#             dispatcher.utter_message(text="Thank you for answering all the questions!")
+    #         return [SlotSet("question_index", question_index),
+    #                 SlotSet("user_response", None)]
+    #     else:
+    #         dispatcher.utter_message(text="Thank you for answering all the questions!")
             
-#             return [SlotSet("question_index", None)]
+    #         return [SlotSet("question_index", None)]
         
 response = []
+
 
 class ActionStoreResponse(Action):
     def name(self):
@@ -299,14 +393,14 @@ class ActionStoreResponse(Action):
         pdf.set_font("Arial", size=12)
         pdf.cell(200, 10, txt="Policy Questions and Responses", ln=True, align='C')
         for num in range(5):
-            pdf.cell(200, 10, txt=question[num], ln=True, align='L')
-            pdf.cell(200, 10, txt= "Ans:" + response[num], ln=True, align='L')
+            pdf.multi_cell(200, 10, txt=question[num], align='L')
+            pdf.multi_cell(200, 10, txt= "Ans:" + response[num], align='L')
         pdf.output("Policy_Questions_and_Responses.pdf")
         
 
  
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        for num in range(1,6):
+        for num in range(10):
             user_response = tracker.get_slot(f"response{num}")
             response.append(user_response)
         dispatcher.utter_message(text="Your responses are recorded")
@@ -314,6 +408,44 @@ class ActionStoreResponse(Action):
 
         dispatcher.utter_message(text="Saved in 'Policy_Questions_and_Responses.pdf' file!!!")
         return []
+
+with open('actions/flexible_questions.json', 'r') as file:
+    flexible_questions = json.load(file)
+
+class ActionActivateForm(Action):
+    def name(self) -> str:
+        return "action_form"
+    
+    
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        question_list = [
+                        "How will the mandatory core period be enforced, and what tools or systems will be used to track employee hours?",
+                        "What provisions will be made for employees in different time zones, and how will this impact the mandatory core period?",
+                        "How will the policy accommodate employees with varying personal responsibilities, such as childcare or eldercare?",
+                        "What are the expectations for employee availability during the mandatory core period, and how will this be communicated?",
+                        "How will the policy handle requests for exceptions or adjustments to the core hours due to unforeseen circumstances?",
+                        "What guidelines will be provided for team meetings, collaboration, and communication within the flexible hours framework?",
+                        "How will the policy ensure that flexible hours do not negatively impact productivity, team cohesion, or project deadlines?",
+                        "What measures will be taken to ensure that employees do not feel pressured to work outside their chosen hours or beyond the core period?",
+                        "What are the legal implications of implementing flexible hours, and how does the policy comply with local labor laws and regulations?",
+                        "How will performance be evaluated for employees working flexible hours, and what criteria will be used to ensure fairness?"
+                        ]
+
+        # for num in range(len(question_list)):
+        #     dispatcher.utter_message(text=question_list[num])
+        # dispatcher.utter_message(text="successful!!!!")
+        # return []
+        return [SlotSet("question0", question_list[0]),
+                SlotSet("question1", question_list[1]),
+                SlotSet("question2", question_list[2]),
+                SlotSet("question3", question_list[3]),
+                SlotSet("question4", question_list[4]),
+                SlotSet("question5", question_list[5]),
+                SlotSet("question6", question_list[6]),
+                SlotSet("question7", question_list[7]),
+                SlotSet("question8", question_list[8]),
+                SlotSet("question9", question_list[9]),
+                Form("question_form")]
 
 
 

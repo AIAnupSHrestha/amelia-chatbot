@@ -20,18 +20,16 @@ rules:
 - rule: Activate form
   steps:
   - intent: ask_question
-  - action: question_form
+  - action: action_form
   - active_loop: question_form
 
 - rule: submit form
   condition:
   - active_loop: question_form
   steps:
-  - action: question_form
-  - active_loop: null
+  - active_loop: question_form
   - slot_was_set:
     - requested_slot: null
-  # - action: action_form_submitted
   - action: action_store_response
 
 # - rule: ask question
