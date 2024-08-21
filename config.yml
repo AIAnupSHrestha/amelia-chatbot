@@ -29,9 +29,9 @@ pipeline:
 - name: ResponseSelector
   epochs: 100
   constrain_similarities: true
-#   - name: FallbackClassifier
-#     threshold: 0.3
-#     ambiguity_threshold: 0.1
+- name: FallbackClassifier
+  threshold: 0.3
+  ambiguity_threshold: 0.3
 
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
@@ -41,6 +41,9 @@ policies:
 # # See https://rasa.com/docs/rasa/policies for more information.
 - name: MemoizationPolicy
 - name: RulePolicy
+  core_fallback_threshold: 0.3
+  core_fallback_action_name: "action_custom_fallback"
+  enable_fallback_prediction: True
 - name: UnexpecTEDIntentPolicy
   max_history: 5
   epochs: 100

@@ -20,6 +20,7 @@ rules:
 - rule: Activate form
   steps:
   - intent: ask_question
+  - action: action_set_question
   - action: action_form
   - active_loop: question_form
 
@@ -30,9 +31,17 @@ rules:
   - active_loop: question_form
   - slot_was_set:
     - requested_slot: null
-  - action: action_store_response
+  - action: action_custom_fallback
 
-# - rule: ask question
-#   steps: 
-#   - intent: ask_question
-#   - action: action_ask_question
+
+- rule: OutOfScope
+  steps: 
+  - intent: outofScope
+  - action: action_custom_fallback
+
+- rule: policy_question
+  steps:
+  - intent: ask_question
+  - action: action_set_question
+  - action: action_form
+  - active_loop: question_form

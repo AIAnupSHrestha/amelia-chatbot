@@ -166,52 +166,53 @@ stories:
 - story: activating form
   steps:
   - intent: ask_question
+  - action: action_set_question
   - action: action_form
   - active_loop: question_form
   - slot_was_set:
     - requested_slot: response0
   - slot_was_set:
     - response0: Part-Time Core Periods
-  - slot_was_set:
-    - requested_slot: response1
-  - slot_was_set:
-    - response1: Part-Time Core Periods
-  - slot_was_set:
-    - requested_slot: response2
-  - slot_was_set:
-    - response2: Part-Time Core Periods
-  - slot_was_set:
-    - requested_slot: response3
-  - slot_was_set:
-    - response3: Part-Time Core Periods
-  - slot_was_set:
-    - requested_slot: response4
-  - slot_was_set:
-    - response4: Full Engagement
-  - slot_was_set:
-    - requested_slot: response5
-  - slot_was_set:
-    - response5: Request Process
-  - slot_was_set:
-    - requested_slot: response6
-  - slot_was_set:
-    - response6: Request Process
-  - slot_was_set:
-    - requested_slot: response7
-  - slot_was_set:
-    - response7: Request Process
-  - slot_was_set:
-    - requested_slot: response8
-  - slot_was_set:
-    - response8: Request Process
-  - slot_was_set:
-    - requested_slot: response9
-  - slot_was_set:
-    - response9: Request Process
+  # - slot_was_set:
+  #   - requested_slot: response1
+  # - slot_was_set:
+  #   - response1: Part-Time Core Periods
+  # - slot_was_set:
+  #   - requested_slot: response2
+  # - slot_was_set:
+  #   - response2: Part-Time Core Periods
+  # - slot_was_set:
+  #   - requested_slot: response3
+  # - slot_was_set:
+  #   - response3: Part-Time Core Periods
+  # - slot_was_set:
+  #   - requested_slot: response4
+  # - slot_was_set:
+  #   - response4: Full Engagement
+  # - slot_was_set:
+  #   - requested_slot: response5
+  # - slot_was_set:
+  #   - response5: Request Process
+  # - slot_was_set:
+  #   - requested_slot: response6
+  # - slot_was_set:
+  #   - response6: Request Process
+  # - slot_was_set:
+  #   - requested_slot: response7
+  # - slot_was_set:
+  #   - response7: Request Process
+  # - slot_was_set:
+  #   - requested_slot: response8
+  # - slot_was_set:
+  #   - response8: Request Process
+  # - slot_was_set:
+  #   - requested_slot: response9
+  # - slot_was_set:
+  #   - response9: Request Process
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
-  - action: action_store_response
+  - action: action_custom_fallback
 
 
 

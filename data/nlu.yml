@@ -94,7 +94,54 @@ nlu:
     - Irregular schedule
     - Job sharing
     - flexible hours
-    
+
+- intent: outofScope
+  examples: |
+    - [flexible hour]
+    - [Time Tracking Software](response0)
+    - [Project Management Tools](response0)
+    - [Automated Attendance Systems](response0)
+    - [Regular Check-ins](response0)
+    - [Flexible Core Hours](response0)
+    - [Adjusted Core Periods](response0)
+    - [Asynchronous Collaboration](response0)
+    - [Rotating Meeting Times](response0)
+    - [Flexible Core Hours](response0)
+    - [Part-Time Core Periods](response0)
+    - [Remote Work Options](response0)
+    - [Supportive Infrastructure](response0)
+    - [Transparent Communication](response0)
+    - [Full Engagement](response0)
+    - [Prompt Communication](response0)
+    - [Task Completion](response0)
+    - [Employee Handbook](response0)
+    - [Onboarding Process](response0)
+    - [Regular Reminders](response0)
+    - [Manager Communication](response0)
+    - [Request Process](response0)
+    - [Case-by-Case Evaluation](response0)
+    - [Temporary Adjustments](response0)
+    - [performance reviews](response0)
+    - [Core Period Adjustment](response0)
+    - [Flexible Scheduling](response0)
+    - [Support Resources](response0)
+    - [Open Communication](response0)
+    - [Clear Communication](response0)
+    - [Team Collaboration](response0)
+    - [Performance Metrics](response0)
+    - [Formal Request Process](response0)
+    - [Manager Approval](response0)
+    - [Time-Limited Adjustments](response0)
+    - [Core Hour Meetings](response0)
+    - [Clear Expectations](response0)
+    - [Team Building Activities](response0)
+    - [Performance Management](response0)
+    - [Employee Wellbeing Initiatives](response0)
+    - [Clear Boundaries](response0)
+    - [Legal Consultation](response0)
+    - [Performance Metrics](response0)
+    - [Fair Assessment](response0)
+
 - synonym: remote
   examples: |
     - Remote
