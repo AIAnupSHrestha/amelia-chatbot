@@ -9,11 +9,11 @@ client = OpenAI(
   api_key=OPENAI_KEY
 )
 yes_no_prompt = """
-    Is the following answer relevant to the question {current_question}: '{user_answer}'? Answer with 'yes' or 'no'.
+    Is the following answer relevant to the question {current_question}: '{user_answer}'? Answer with 'yes' or 'no' OR 'true' or 'false', without any additional explanation..
     """
 def prompt_engineering(prompt):
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo-0125",
+        model="GPT-Model",
         messages=[
             {"role": "user", "content": prompt},
         ],
@@ -27,5 +27,7 @@ prompt = yes_no_prompt.format(current_question=current_question, user_answer=use
 
 # print(prompt)
 
-answer_relevance = prompt_engineering(prompt=prompt).lower()
+answer_relevance = prompt_engineering(prompt=prompt)
+
+print(answer_relevance)
 
