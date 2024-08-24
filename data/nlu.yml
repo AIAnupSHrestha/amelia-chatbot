@@ -35,6 +35,18 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+- intent: policy_type
+  examples: |
+    - I want to know about the [flexible](policy_name) work policy
+    - Tell me more about [flexible](policy_name) work policy
+    - Give me details about [strict](policy_name) work policy
+    - Select the [non-flexible](policy_name) work policy for me
+    - I'd like information on the [non-flexible](policy_name) policy
+    - Can you explain the [onsite](policy_name) work policy?
+    - What does the [onsite](policy_name) policy entail?
+    - Show me the details of [non-flexible](policy_name) policy
+    - I am interested in the [strict](policy_name) policy
+    - Provide information on the [onsite](policy_name) policy
 - intent: select_option
   examples: |
     - [Job Post](option)

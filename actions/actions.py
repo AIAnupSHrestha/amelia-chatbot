@@ -28,6 +28,8 @@ from reportlab.pdfgen import canvas
 from reportlab.pdfbase.ttfonts import TTFont 
 from reportlab.pdfbase import pdfmetrics 
 from reportlab.lib import colors 
+import mysql.connector
+
 
 # import mysql.connector
 # from mysql.connector import errorcode
@@ -187,19 +189,6 @@ class ActionPolicyType(Action):
                 dispatcher.utter_message(text="No policy type selected")
             return []
 
-# def prompt_engineering(prompt):
-#     response = client.chat.completions.create(
-#         model="gpt-4o",
-#         messages=[
-#             {"role": "user", "content": prompt},
-#         ],
-#     )
-#     return response.choices[0].message.content
-#     response = client.completions.create(
-#         model="gpt-3.5-turbo-instruct",
-#         prompt=prompt,
-#     )
-#     return response.choices[0].text
 
 class ActionSelectFlexibleWorkOption(Action):
 
@@ -216,14 +205,15 @@ class ActionSelectFlexibleWorkOption(Action):
         selected_policy = tracker.get_slot('policy_name')
         flexible_work_option = predefined_questions[selected_policy].get(flexible_work_option)
         prompt = PROMPT_TEMPLATE.format(job_type=job_type, flexible_work_option=flexible_work_option)
-        questions = prompt_engineering(prompt=prompt)
+        # questions = prompt_engineering(prompt=prompt)
+        questions = flexible_questions["question_list"]
         attachments = {
             "questions": questions,
             "payload": "question_list"
         }
-        dispatcher.utter_attachment(attachments=attachments)
+        dispatcher.utter_attachment(attachment=attachments)
         # dispatcher.utter_message(text=f"You have selected: {flexible_work_option}")
-        return []
+        return [FollowupAction("action_set_question")]
         # return [SlotSet('flexible_work_option', flexible_work_option)]
 
 
@@ -365,6 +355,7 @@ class ActionSetQuestion(Action):
                         }
         index = int(tracker.get_slot("question_index"))
         question_index = str(index)
+        dispatcher.utter_message(text="Please answer the following questions:")
         if index >= len(question_list):
             return [FollowupAction("action_store_response")]
         else:
