@@ -300,11 +300,11 @@ class ValidateQuestionForm(FormValidationAction):
         answer_relevance = prompt_engineering(prompt=prompt).lower()
         
         if answer_relevance == "yes":
-            return {"response0": user_answer}
+            return [SlotSet("question_index", index + 1),
+                    SlotSet("response0", user_answer)]#{"response0": user_answer}
         else:
             dispatcher.utter_message(text="Please enter a answer relevant to the question.")
-            return {"response0": None,
-                    "question_index": index - 1}
+            return {"response0": None}
     
 
 
@@ -360,7 +360,6 @@ class ActionSetQuestion(Action):
             return [FollowupAction("action_store_response")]
         else:
             return [SlotSet("question0", question_list[question_index]),
-                    SlotSet("question_index", index + 1),
                     FollowupAction("action_form")]
     
 class ActionActivateForm(Action):
