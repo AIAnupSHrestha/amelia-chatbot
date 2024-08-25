@@ -295,16 +295,15 @@ class ValidateQuestionForm(FormValidationAction):
 
         prompt = yes_no_prompt.format(current_question=current_question, user_answer=user_answer)
 
-        print(prompt)
-
-        answer_relevance = prompt_engineering(prompt=prompt).lower()
+        answer_relevance = "yes"#prompt_engineering(prompt=prompt).lower()
+        print(answer_relevance)
         
         if answer_relevance == "yes":
-            return [SlotSet("question_index", index + 1),
-                    SlotSet("response0", user_answer)]#{"response0": user_answer}
-        else:
+            # return [SlotSet("question_index", index + 1), SlotSet("response0", user_answer)]
+            return {"response0": user_answer} #[FollowupAction("action_custom_fallback")]
+        if answer_relevance == "no":
             dispatcher.utter_message(text="Please enter a answer relevant to the question.")
-            return {"response0": None}
+            return {"response0": None} #[SlotSet("question_index", index - 1), SlotSet("response0", None)]
     
 
 
@@ -355,11 +354,14 @@ class ActionSetQuestion(Action):
                         }
         index = int(tracker.get_slot("question_index"))
         question_index = str(index)
-        dispatcher.utter_message(text="Please answer the following questions:")
+        print(question_index)
+        if index == 0:
+            dispatcher.utter_message(text="Please answer the following questions:")
         if index >= len(question_list):
             return [FollowupAction("action_store_response")]
         else:
             return [SlotSet("question0", question_list[question_index]),
+                    SlotSet("question_index", index + 1),
                     FollowupAction("action_form")]
     
 class ActionActivateForm(Action):

@@ -174,7 +174,7 @@ responses:
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
   utter_ask_response0:
-  - text: Q.{question0}
+  - text: Q. {question0}
   # utter_ask_response1:
   # - text: 2. {question1}
   # utter_ask_response2:
