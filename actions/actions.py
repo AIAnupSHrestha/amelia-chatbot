@@ -20,7 +20,7 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 
-import re
+# import re
 from fpdf import FPDF
 
 import ollama
@@ -291,19 +291,23 @@ class ValidateQuestionForm(FormValidationAction):
     def validate_response0(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
         current_question = tracker.get_slot("question0")
         user_answer = tracker.latest_message.get('text')
-        index = tracker.get_slot("question_index")
+        index = int(tracker.get_slot("question_index"))
+        print(f"validation {index}")
+
 
         prompt = yes_no_prompt.format(current_question=current_question, user_answer=user_answer)
 
-        answer_relevance = "yes"#prompt_engineering(prompt=prompt).lower()
+        answer_relevance = "no" #prompt_engineering(prompt=prompt).lower()
         print(answer_relevance)
         
         if answer_relevance == "yes":
             # return [SlotSet("question_index", index + 1), SlotSet("response0", user_answer)]
             return {"response0": user_answer} #[FollowupAction("action_custom_fallback")]
         if answer_relevance == "no":
+            updated_index = index - 1
             dispatcher.utter_message(text="Please enter a answer relevant to the question.")
-            return {"response0": None} #[SlotSet("question_index", index - 1), SlotSet("response0", None)]
+            return {"question_index": updated_index, "response0": None}
+            # return [SlotSet("question_index", index - 1), SlotSet("response0", None)]
     
 
 
