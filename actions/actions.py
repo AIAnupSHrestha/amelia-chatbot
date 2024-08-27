@@ -1,3 +1,6 @@
+# rasa run --enable-api --cors="*"
+# rasa run actions
+
 # This files contains your custom actions which can be used to run
 # custom Python code.
 #
@@ -296,14 +299,13 @@ class ValidateQuestionForm(FormValidationAction):
 
 
         prompt = yes_no_prompt.format(current_question=current_question, user_answer=user_answer)
-
-        answer_relevance = "no" #prompt_engineering(prompt=prompt).lower()
+        answer_relevance = "yes" #prompt_engineering(prompt=prompt).lower()
         print(answer_relevance)
         
-        if answer_relevance == "yes":
+        if answer_relevance == "yes" or "true":
             # return [SlotSet("question_index", index + 1), SlotSet("response0", user_answer)]
-            return {"response0": user_answer} #[FollowupAction("action_custom_fallback")]
-        if answer_relevance == "no":
+            return {"response0": user_answer, "response0": None} #[FollowupAction("action_custom_fallback")]
+        elif answer_relevance == "no" or "false":
             updated_index = index - 1
             dispatcher.utter_message(text="Please enter a answer relevant to the question.")
             return {"question_index": updated_index, "response0": None}
@@ -372,8 +374,10 @@ class ActionActivateForm(Action):
     def name(self):
         return "action_form"
     
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:        
-        return [Form("question_form")]#,
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        activate_form = Form("question_form")        
+        # return [Form("question_form")]#,
+        return [activate_form] #, FollowupAction("action_custom_fallback")]
 
     
 class actionCustomFallback(Action):

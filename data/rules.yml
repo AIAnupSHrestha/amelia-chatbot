@@ -31,7 +31,6 @@ rules:
   - active_loop: question_form
   - slot_was_set:
     - requested_slot: null
-  - action: validate_question_form
   - action: action_custom_fallback
 
 

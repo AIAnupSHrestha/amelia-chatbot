@@ -16,6 +16,21 @@ nlu:
     - goodevening
     - good afternoon
     - Hi
+    - hi there
+    - howdy
+    - what's up
+    - yo
+    - greetings
+    - hiya
+    - hello!
+    - hi everyone
+    - hey everyone
+    - hey guys
+    - hi guys
+    - good day
+    - salut
+    - hi there!
+    - hi again
 - intent: goodbye
   examples: |
     - cu
@@ -29,24 +44,66 @@ nlu:
     - bye bye
     - see you later
     - qwer
+    - farewell
+    - take care
+    - peace out
+    - I'm out
+    - later
+    - until next time
+    - take it easy
+    - adios
+    - catch you later
+    - so long
+    - see ya
+    - gotta go
+    - talk to you soon
+    - I'm off
+    - have a good one
+    - catch you on the flip side
 - intent: bot_challenge
   examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - are you an artificial intelligence?
+    - are you real?
+    - is this a human I am talking to?
+    - are you just a program?
+    - are you a machine?
+    - is this a real person?
+    - are you automated?
+    - is this conversation with a bot?
+    - are you a real person or a bot?
+    - is there a person on the other side?
+    - are you a chatbot?
+    - are you an AI assistant?
+    - are you a robot?
+    - is this an AI I am chatting with?
+    - who am I chatting with?
+    - are you alive?
+    - are you a computer program?
+    - am I chatting with a bot or a person?
+    - is this an automated response?
+    - are you a virtual assistant?
+    - is this conversation with a machine?
 - intent: policy_type
   examples: |
-    - I want to know about the [flexible](policy_name) work policy
-    - Tell me more about [flexible](policy_name) work policy
-    - Give me details about [strict](policy_name) work policy
-    - Select the [non-flexible](policy_name) work policy for me
-    - I'd like information on the [non-flexible](policy_name) policy
-    - Can you explain the [onsite](policy_name) work policy?
-    - What does the [onsite](policy_name) policy entail?
-    - Show me the details of [non-flexible](policy_name) policy
-    - I am interested in the [strict](policy_name) policy
-    - Provide information on the [onsite](policy_name) policy
+    - What are the rules for the [flexible](policy_name) work policy?
+    - Can you give me an overview of the [strict](policy_name) work policy?
+    - I'm looking for details on the [non-flexible](policy_name) work policy.
+    - Describe the [onsite](policy_name) work policy to me.
+    - How does the [flexible](policy_name) work policy function?
+    - Could you outline the [strict](policy_name) work policy?
+    - What are the key points of the [non-flexible](policy_name) work policy?
+    - Explain the [onsite](policy_name) policy in detail.
+    - I'd like to learn more about the [flexible](policy_name) work policy.
+    - What should I know about the [strict](policy_name) policy?
+    - How does the [non-flexible](policy_name) policy work?
+    - What is included in the [onsite](policy_name) work policy?
+    - Give me an explanation of the [flexible](policy_name) work policy.
+    - I want more information on the [strict](policy_name) work policy.
+    - Tell me the specifics of the [non-flexible](policy_name) policy.
+    - Can you summarize the [onsite](policy_name) policy for me?
+    - What are the benefits of the [flexible](policy_name) work policy?
+    - Help me understand the [onsite](policy_name) policy better.
+    - Can you provide insights on the [flexible](policy_name) work policy?
 - intent: select_option
   examples: |
     - [Job Post](option)
@@ -70,6 +127,26 @@ nlu:
     - I want to draft a [Team activity information](option) form.
     - Please help me put together a [Job Posting](option) document.
     - I need assistance with making an [HR Policy](option) template.
+    - I want to create a [Job Description](option) form.
+    - Could you help me draft an [HR Guideline](option)?
+    - Help me create a [Team Building Plan](option).
+    - Can you assist in drafting a [Job Description](option)?
+    - I need to create a [Company Policy](option) document.
+    - Please help me develop an [HR Guideline](option) template.
+    - Could you design a [Team Building Plan](option) form for me?
+    - I want to write a [Job Description](option) template.
+    - Can you provide me with a [Company Policy](option) draft?
+    - I am looking to draft an [HR Guideline](option).
+    - Help me formulate a [Team Building Plan](option).
+    - Can you create a [Job Description](option) for me?
+    - I need assistance with drafting a [Company Policy](option) document.
+    - Could you assist me in developing an [HR Guideline](option) template?
+    - Please help me generate a [Team Building Plan](option) form.
+    - I want to put together a [Job Description](option) template.
+    - Can you help me write a [Company Policy](option)?
+    - I need to make an [HR Guideline](option) draft.
+    - Could you assist with creating a [Team Building Plan](option) form?
+    - I want to design a [Job Description](option) document.
 - intent: hr_policy
   examples: |
     - I want to create policy for [remote](hr_policy_type)
@@ -87,6 +164,21 @@ nlu:
     - I need to develop an HR policy for [remote](hr_policy_type) roles.
     - I want to create hr policy for [Remote](hr_policy_type) job
     - I want to create [hybrid](hr_policy_type) job
+    - I want to design a policy for [remote](hr_policy_type) work settings.
+    - How can I create a policy for [hybrid](hr_policy_type) work?
+    - Can you help me set up an HR policy for [on-site](hr_policy_type) jobs?
+    - I need guidance in drafting a policy for [remote](hr_policy_type) working.
+    - I'd like to establish a policy for [hybrid](hr_policy_type) employees.
+    - Help me create an HR policy for [on-site](hr_policy_type) work settings.
+    - Can you assist me in formulating a policy for [remote](hr_policy_type) jobs?
+    - I want to develop an HR policy for [hybrid](hr_policy_type) positions.
+    - Please guide me in creating a policy for [on-site](hr_policy_type) work environments.
+    - I am looking to draft a policy for [remote](hr_policy_type) roles.
+    - How do I write an HR policy for [hybrid](hr_policy_type) employment?
+    - I need to establish a policy for [on-site](hr_policy_type) workers.
+    - I want to craft a policy for [remote](hr_policy_type) employment arrangements.
+    - Help me draft an HR policy for [hybrid](hr_policy_type) work.
+    - Please assist me in creating a policy for [on-site](hr_policy_type) jobs.
     - [Remote]{"entity": "hr_policy_type", "value": "remote"} work
 - intent: select_flexible_work_option
   examples: |
@@ -109,7 +201,6 @@ nlu:
 
 - intent: outofScope
   examples: |
-    - [flexible hour]
     - [Time Tracking Software](response0)
     - [Project Management Tools](response0)
     - [Automated Attendance Systems](response0)
@@ -153,6 +244,25 @@ nlu:
     - [Legal Consultation](response0)
     - [Performance Metrics](response0)
     - [Fair Assessment](response0)
+    - [How to manage flexible hours](response0)
+    - [What are the options for remote work](response0)
+    - [Processes for adjusting core hours](response0)
+    - [Tools for team collaboration](response0)
+    - [Guidelines for performance reviews](response0)
+    - [Support for employee wellbeing](response0)
+    - [Setting up time tracking systems](response0)
+    - [Best practices for remote work](response0)
+    - [Evaluating flexible scheduling requests](response0)
+    - [Communication strategies for remote teams](response0)
+    - [Resources for managing core hours](response0)
+    - [Feedback on performance management](response0)
+    - [Steps for flexible scheduling approvals](response0)
+    - [Templates for performance reviews](response0)
+    - [Adjusting schedules for part-time employees](response0)
+    - [Managing team building activities](response0)
+    - [Legal advice for flexible work policies](response0)
+    - [Tools for automated attendance](response0)
+    - [Creating a supportive work environment](response0)
 
 - synonym: remote
   examples: |
