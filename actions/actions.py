@@ -207,15 +207,16 @@ class ActionSelectFlexibleWorkOption(Action):
         job_type = f'{hr_policy_type} for {option} work'
         selected_policy = tracker.get_slot('policy_name')
         flexible_work_option = predefined_questions[selected_policy].get(flexible_work_option)
-        prompt = PROMPT_TEMPLATE.format(job_type=job_type, flexible_work_option=flexible_work_option)
+        # prompt = PROMPT_TEMPLATE.format(job_type=job_type, flexible_work_option=flexible_work_option)
         # questions = prompt_engineering(prompt=prompt)
-        questions = flexible_questions["question_list"]
+        questions = "question" #flexible_questions["question_list"]
         attachments = {
             "questions": questions,
             "payload": "question_list"
         }
-        dispatcher.utter_attachment(attachment=attachments)
-        # dispatcher.utter_message(text=f"You have selected: {flexible_work_option}")
+        # dispatcher.utter_attachment(attachment=attachments)
+        dispatcher.utter_message(text=f"You have selected: {flexible_work_option}")
+        dispatcher.utter_message(text="Please answer the following questions:")
         return [FollowupAction("action_set_question")]
         # return [SlotSet('flexible_work_option', flexible_work_option)]
 
@@ -230,49 +231,6 @@ class ActionGetQuestions(Action):
         return [{"questions": questions}]
 
 
-
-# class QuestionForm(FormValidationAction):
-#     def name(self) -> Text:
-#         return "question_form"
-    
-#     user_response = []
-
-#     async def required_slots(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Text]:
-
-#         questions = tracker.get_slot("questions")
-#         if not questions:
-#             return ["questions"]
-#         else:
-#             next_question_index = len(tracker.get_slots()) - 1
-#             if next_question_index < len(questions):
-#                 return [f"question_{next_question_index + 1}"]
-#             else:
-#                 return []
-
-#     def submit(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#         answers = tracker.current_state()['slots']
-#         self.user_response.append(answers)
-#         dispatcher.utter_message(text=answers)
-#         return []
-
-
-# class QuestionForm(FormValidationAction):
-#     def name(self):
-#         return "question_form"
-    
-#     def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
-#         return {
-#             "response0": self.from_text(),
-#             "response1": self.from_text(),
-#             "response2": self.from_text(),
-#             "response3": self.from_text(),
-#             "response4": self.from_text(),
-#             "response5": self.from_text(),
-#             "response6": self.from_text(),
-#             "response7": self.from_text(),
-#             "response8": self.from_text(),
-#             "response9": self.from_text()
-#         }
 def prompt_engineering(prompt):
     response = client.chat.completions.create(
         model="gpt-3.5-turbo-0125",
@@ -286,32 +244,32 @@ yes_no_prompt = """
     Is the following answer relevant to the question {current_question}: '{user_answer}'? Answer with 'yes' or 'no' OR 'true' or 'false', without any additional explanation. .
     """
 
-class ValidateQuestionForm(FormValidationAction):
-    def name(self):
-        return "validate_question_form"
+# class ValidateQuestionForm(FormValidationAction):
+#     def name(self):
+#         return "validate_question_form"
     
 
-    def validate_response0(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
-        current_question = tracker.get_slot("question0")
-        user_answer = tracker.latest_message.get('text')
-        index = int(tracker.get_slot("question_index"))
-        print(f"validation {index}")
+#     def validate_response(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+#         current_question = tracker.get_slot("question0")
+#         user_answer = tracker.latest_message.get('text')
+#         index = int(tracker.get_slot("question_index"))
 
 
-        prompt = yes_no_prompt.format(current_question=current_question, user_answer=user_answer)
-        answer_relevance = "yes" #prompt_engineering(prompt=prompt).lower()
-        print(answer_relevance)
+#         prompt = yes_no_prompt.format(current_question=current_question, user_answer=user_answer)
+#         answer_relevance = "yes" #prompt_engineering(prompt=prompt).lower()
+#         print(answer_relevance)
         
-        if answer_relevance == "yes" or "true":
-            # return [SlotSet("question_index", index + 1), SlotSet("response0", user_answer)]
-            return {"response0": user_answer, "response0": None} #[FollowupAction("action_custom_fallback")]
-        elif answer_relevance == "no" or "false":
-            updated_index = index - 1
-            dispatcher.utter_message(text="Please enter a answer relevant to the question.")
-            return {"question_index": updated_index, "response0": None}
-            # return [SlotSet("question_index", index - 1), SlotSet("response0", None)]
+#         if answer_relevance == "yes" or "true":
+#             # return [SlotSet("question_index", index + 1), SlotSet("response", user_answer)]
+#             return {"user_response": user_answer, "response": None} #[FollowupAction("action_custom_fallback")]
+#         elif answer_relevance == "no" or "false":
+#             updated_index = index - 1
+#             dispatcher.utter_message(text="Please enter a answer relevant to the question.")
+#             return {"question_index": updated_index, "response": None}
+#             # return [SlotSet("question_index", index - 1), SlotSet("response", None)]
     
 
+    
 
 class ActionStoreResponse(Action):
     def name(self):
@@ -337,6 +295,43 @@ class ActionStoreResponse(Action):
         dispatcher.utter_message(text="Saved in 'Policy_Questions_and_Responses.pdf' file!!!")
         return []
 
+class ValidateQuestionForm(FormValidationAction):
+    def name(self):
+        return "validate_question_form"
+    
+    def validate_response(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        current_question = tracker.get_slot("question0")
+        user_answer = tracker.latest_message.get('text')
+        index = tracker.get_slot("question_index")
+        response_list = tracker.get_slot("user_response")
+        print(tracker.get_slot("response"))
+
+
+        if response_list:
+            updated_response_list = response_list + [user_answer]
+        else:
+            updated_response_list = user_answer
+        
+
+        prompt = yes_no_prompt.format(current_question=current_question, user_answer=user_answer)
+        answer_relevance = "yes" #prompt_engineering(prompt=prompt).lower()
+
+        if answer_relevance == "yes" or "true":
+            print(updated_response_list)
+            return {"user_response": updated_response_list}
+        elif answer_relevance == "no" or "false":
+            updated_index = index - 1
+            dispatcher.utter_message(text="Please enter answer relevant to the question.")
+            return {"question_index": updated_index}
+    
+    def submit(
+        self,
+        dispatcher,
+        tracker,
+        domain,
+    ) -> List[Dict]:
+        return [FollowupAction("action_set_question")]
+    
 with open('actions/flexible_questions.json', 'r') as file:
     flexible_questions = json.load(file)
 
@@ -347,27 +342,26 @@ class ActionSetQuestion(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         question_list = {
-                            "0": "How will the mandatory core period be enforced, and what tools or systems will be used to track employee hours?",
-                            "1": "What provisions will be made for employees in different time zones, and how will this impact the mandatory core period?",
-                            "2": "How will the policy accommodate employees with varying personal responsibilities, such as childcare or eldercare?",
-                            "3": "What are the expectations for employee availability during the mandatory core period, and how will this be communicated?",
-                            "4": "How will the policy handle requests for exceptions or adjustments to the core hours due to unforeseen circumstances?",
-                            "5": "What guidelines will be provided for team meetings, collaboration, and communication within the flexible hours framework?",
-                            "6": "How will the policy ensure that flexible hours do not negatively impact productivity, team cohesion, or project deadlines?",
-                            "7": "What measures will be taken to ensure that employees do not feel pressured to work outside their chosen hours or beyond the core period?",
-                            "8": "What are the legal implications of implementing flexible hours, and how does the policy comply with local labor laws and regulations?",
-                            "9": "How will performance be evaluated for employees working flexible hours, and what criteria will be used to ensure fairness?"
+                            "1": "How will the mandatory core period be enforced, and what tools or systems will be used to track employee hours?",
+                            "2": "What provisions will be made for employees in different time zones, and how will this impact the mandatory core period?",
+                            "3": "How will the policy accommodate employees with varying personal responsibilities, such as childcare or eldercare?",
+                            "4": "What are the expectations for employee availability during the mandatory core period, and how will this be communicated?",
+                            "5": "How will the policy handle requests for exceptions or adjustments to the core hours due to unforeseen circumstances?",
+                            "6": "What guidelines will be provided for team meetings, collaboration, and communication within the flexible hours framework?",
+                            "7": "How will the policy ensure that flexible hours do not negatively impact productivity, team cohesion, or project deadlines?",
+                            "8": "What measures will be taken to ensure that employees do not feel pressured to work outside their chosen hours or beyond the core period?",
+                            "9": "What are the legal implications of implementing flexible hours, and how does the policy comply with local labor laws and regulations?",
+                            "10": "How will performance be evaluated for employees working flexible hours, and what criteria will be used to ensure fairness?"
                         }
         index = int(tracker.get_slot("question_index"))
+        print(f"set question index - {index}")
         question_index = str(index)
-        print(question_index)
-        if index == 0:
-            dispatcher.utter_message(text="Please answer the following questions:")
-        if index >= len(question_list):
+        print(tracker.get_slot("user_response"))
+        if index > len(question_list):
             return [FollowupAction("action_store_response")]
         else:
             return [SlotSet("question0", question_list[question_index]),
-                    SlotSet("question_index", index + 1),
+                    SlotSet("response", None),
                     FollowupAction("action_form")]
     
 class ActionActivateForm(Action):
@@ -375,26 +369,28 @@ class ActionActivateForm(Action):
         return "action_form"
     
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        activate_form = Form("question_form")        
-        # return [Form("question_form")]#,
-        return [activate_form] #, FollowupAction("action_custom_fallback")]
+        index = int(tracker.get_slot("question_index"))
+        updated_index = index + 1       
+        return [SlotSet("question_index", index + 1), Form("question_form")]#,FollowupAction("action_custom_fallback")]
+        # return [FollowupAction("action_custom_fallback")]
+  
 
     
-class actionCustomFallback(Action):
-    def name(self):
-        return "action_custom_fallback"       
+# class actionCustomFallback(Action):
+#     def name(self):
+#         return "action_custom_fallback"       
         
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any])  -> List[Dict[Text, Any]]:
-        user_response = tracker.latest_message['text']
+#     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any])  -> List[Dict[Text, Any]]:
+#         user_response = tracker.latest_message['text']
 
-        if tracker.get_slot("response"):
-            updated_response = tracker.get_slot("response") + [user_response]
-        else:
-            updated_response = tracker.latest_message['text']
-        print(user_response, updated_response)
+#         if tracker.get_slot("response"):
+#             updated_response = tracker.get_slot("response") + [user_response]
+#         else:
+#             updated_response = tracker.latest_message['text']
+#         print(updated_response)
         
-        return [SlotSet("response", updated_response),
-                SlotSet("response0", None),
-                FollowupAction("action_set_question")]
+#         return [SlotSet("user_response", updated_response),
+#                 SlotSet("response", None),
+#                 FollowupAction("action_set_question")]
 
 

@@ -28,16 +28,18 @@ rules:
   condition:
   - active_loop: question_form
   steps:
-  - active_loop: question_form
+  - intent: possible_responses
   - slot_was_set:
     - requested_slot: null
-  - action: action_custom_fallback
+  - action: validate_question_form
+  - action: action_set_question
 
 
-- rule: OutOfScope
-  steps: 
-  - intent: outofScope
-  - action: action_custom_fallback
+# - rule: OutOfScope
+#   steps: 
+#   - intent: outofScope
+#   - action: validate_question_form
+#   - action: action_custom_fallback
 
 - rule: policy_question
   steps:
